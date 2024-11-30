@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="chart-div">
+
+    </div>
+
+    
+<script 
+src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
+</script>
+<script src="https://code.highcharts.com/highcharts.js">
+
+</script>
+<script type="text/javascript">
+    console.log("hello world");
+$("#message").html("How are you?");
+
+$.getJSON("https://www.highcharts.com/samples/data/jsonp..php?filename=usdeur.json&callback=?");
+function plotChart(chartData){
+    consolge.log(chartData);
+
+    var options={
+        chart: {
+            type:'column' 
+        },
+        xAxis:{
+            categoriess:['Mihir','Ravi','Sanjai']
+        },
+        series:[{
+            name:'My first plat',
+            data:[1,2,3,4]
+        }
+        ]
+    }
+    var mychart=Highcharts.chart('chart-div',options);
+}
+
+</script>
+
+</body>
+</html>

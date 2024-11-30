@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="example-anchor">여기서 가지고 놀기</div>
+    <script>
+        // Define assert function
+        function assert(condition, message) {
+            if (!condition) {
+                throw new Error(message || "Assertion failed");
+            }
+        }
+
+        /** @this {jQuery}
+            @return {jQuery} */
+        $.fn.id = function(){ return this };
+        var $elem = $( "#example-anchor" );
+
+        assert($elem.id().attr('id') == 'example-anchor'); // true
+
+        /** @typedef {function(this:jQuery): jQuery} */
+        jQuery.morphism;
+
+        /** @sig {jQuery.morphism}, {jQuery.morphism} -> {jQuery.morphism} */
+        $.compose = function( f, g ) {
+            return function() {
+                return f.apply(g.apply(this, arguments), arguments);
+            };
+        };
+
+        $.fn.a = function(){
+            return this.map(function( index, elem ){
+                elem.setAttribute( "foo", "bar" );
+                return elem;
+            });
+        };
+
+        $.fn.b = function(){
+            return this.map(function( index, elem ){
+                elem.setAttribute( "baz", "bak" );
+                return elem;
+            });
+        };
+
+        var $elem = $( "#example-anchor" );
+        console.log($elem.attr( "foo" ));         // undefined
+        console.log($elem.attr( "baz" ));         // undefined
+
+        $.fn.aAndB = $.compose( $.fn.a, $.fn.b );
+
+        $elem.aAndB().attr( "foo" ); // "bar"
+        console.log($elem.attr( "baz" ));         // "bak"
+    </script>
+</body>
+</html>

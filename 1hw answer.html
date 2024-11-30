@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").each(function (idx, value) {
+                console.log("idx:", idx, "data:", value);
+                $(this).click(function (e) {
+                    var lastWord = $(this).text().slice(-1); //문자열중 마지막 문자열 추출
+                    var lattWordNum = Number(lastWord);
+
+                    // Corrected code for summing 1+2+3+4
+                    let sum = 0; // Use 'let' instead of 'const'
+                    for (let i = 1; i <= 4; i++) { // Correct the loop to start from 1
+                        sum += i;
+                    }
+                    console.log(sum); // This will log 10
+                    console.log(lattWordNum);
+
+                    // Apply background color based on button index
+                    switch (idx) {
+                        case 0:
+                            $(this).css("background-color", "yellow"); // 첫번쨰 버튼을 누르면 "yellow"
+                            break;
+                        case 1:
+                            $(this).css("background-color", "cyan"); // 두번째 버튼을 누르면 "cyan"
+                            break;
+                        case 2:
+                            $(this).css("background-color", "magenta"); // 세번째 버튼을 누르면 "magenta"
+                            break;
+                        default:
+                            $(this).css("background-color", "red"); // 그 외의 버튼은 "red"
+                            break;
+                    }
+                });
+            }); //each
+        }); //ready
+    </script>
+</head>
+<body>
+    <button>눌러라1</button>
+    <button>눌러라2</button>
+    <button>눌러라3</button>
+    <button>눌러라4</button>
+</body>
+</html>

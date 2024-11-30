@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("button").each(function (idx, value) {
+          console.log("idx:", idx, "data:", value);
+          $(this).click(function (e) {
+            var lastWord = $(this).text().slice(-1); //문자열중 마지막 문자열 추출
+            var lattWordNum = Number(lastWord);
+            //문1) 1+2+3+4를 구하세요(반복문 사용 ) 
+            let a=0;
+            let i=0;
+            for(i=0;i<4;i++){
+                   a+=i; 
+            }
+            console.log(a);
+            console.log(lattWordNum);
+
+            $(this).css("background-color", "red");
+            $(this).css("background-color", "yellow");
+            $(this).css("background-color", "cyan");
+            $(this).css("background-color", "magenta");
+            //문1)  버튼을 누르면  배경색이 red가 되는데
+            // 첫번쨰 버튼을 누르면 "yellow",
+            //  두번째 버튼을 누르면 "cyan",
+            //세번째 버튼을 누르면  magenta로 색상 변경
+          });
+        }); //each
+      }); //ready
+    </script>
+  </head>
+  <body>
+    <button>눌러라1</button>
+    <button>눌러라2</button>
+    <button>눌러라3</button>
+    <button>눌러라4</button>
+  </body>
+</html>

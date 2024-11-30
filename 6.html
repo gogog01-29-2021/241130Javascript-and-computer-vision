@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<di>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ <div>
+
+ </div id="example-anchor">   //selector
+ <script>
+    const html={};
+    html.morphism;
+    function compose(f,g){ //closure
+        return(a)=> {
+            return f(g(a));
+        }
+    }
+    function a(elem) {
+        elem.setAttribute("foo","bar");
+        return elem;
+    }
+    function b(elem) {
+        elem.setAttribute("baz","bak");
+        return elem;
+    }
+
+    var elem=document.getElementById("example-anchor");
+    console.log(elem.getAttribute("foo"));
+    console.log(elem.getAttribute("baz"));
+
+    elem=compose(a,b)(elem);
+    console.log(elem.getAttribute("foo"));
+    console.log(elem.getAttribute("baz"));
+ </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="example-anchor"></div>
+    <script>
+        // Define 'html' namespace or object
+        const html = {};
+
+        /** @typedef {function(HTMLElement): HTMLElement} */
+        html.morphism;
+
+        /** @sig {html.morphism}, {html.morphism} -> {html.morphism} */
+        function compose(f, g) {  //이것은 closure 입니다 
+            return (a)=> {
+                return f(g(a));//합성 함수의 결과를 반환 
+            };
+        }
+
+        function a(elem) {
+            elem.setAttribute("foo", "bar");
+            return elem;
+        }
+
+        function b(elem) {
+            elem.setAttribute("baz", "bak");
+            return elem;
+        }
+
+        //id는 # 입니다 ,위의  div 태그를 선택합니다 
+        var elem = document.getElementById("example-anchor");
+        console.log(elem.getAttribute("foo")); // undefined
+        console.log(elem.getAttribute("baz")); // undefined
+
+        elem = compose(a, b)(elem);
+        console.log(elem.getAttribute("foo")); // "bar"
+        console.log(elem.getAttribute("baz")); // "bak"
+    </script>
+</body>
+</html>
